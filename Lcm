@@ -1,0 +1,27 @@
+#include <iostream>
+
+unsigned int gcd(unsigned int a, unsigned int b) {
+	return b == 0 ? a : gcd(b, a % b);
+}
+
+unsigned int lcm(unsigned int a, unsigned int b) {
+	for (size_t i = 2; i < a; i++)
+	{
+		if (a % i == 0 && b % i == 0) {
+			return i;
+		}
+	}
+}
+
+unsigned int lcm2(unsigned int a, unsigned int b) {
+	int h = gcd(a, b);
+	return h ? (a * (b / h)) : 0;
+}
+
+int main() {
+	unsigned int a, b;
+
+	std::cin >> a >> b;
+
+	std::cout << lcm2(a, b);
+}
