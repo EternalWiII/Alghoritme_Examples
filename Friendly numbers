@@ -1,0 +1,38 @@
+#include <iostream>
+
+unsigned int sum_divisior(unsigned int n) {
+	unsigned int sum = 0;
+	for (unsigned int i = 1; i < n; i++)
+	{
+		if (n % i == 0) {
+			sum += i;
+		}
+	}
+	return sum;
+}
+
+int main() {
+	std::ios_base::sync_with_stdio(false);
+
+	unsigned int a, b;
+	std::cin >> a >> b;
+
+	for (unsigned int i = a; i <= b; i++) {
+		int s = sum_divisior(i);
+		/*
+			s > i && s<=b спасает от повторений
+			Выводит числа в возрастающем порядке
+		*/
+		if (s > i && s <= b && sum_divisior(s) == i) {
+			std::cout << i << " " << s << std::endl;
+		}
+
+		
+		/*
+			Числа в обратном порядке
+			if (s > i && s <= b && sum_divisior(s) == i) {
+			std::cout << i << " " << s << std::endl;
+		}
+		*/
+	}
+}
