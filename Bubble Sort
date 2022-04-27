@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+
+template <typename T>
+void print_vector(std::vector<T>& vec) {
+	typename std::vector<T>::iterator it = vec.begin();
+
+	for (it; it!= vec.end(); it++)
+	{
+		std::cout << *it << " ";
+	}
+
+	std::cout << std::endl;
+}
+
+template <typename T>
+void bubble_sort(std::vector<T>& vec) {
+	typename std::vector<T>::size_type i;
+	typename std::vector<T>::size_type j;
+
+	for (i = 0; i < vec.size() - 1; i++)
+	{
+		for ( j = 0;  j < vec.size() - i - 1; j++)
+		{
+			if (vec[j] > vec[j+1]) {
+				std::swap(vec[j], vec[j+1]);
+			}
+		}
+	}
+}
+
+int main() {
+	std::vector<int> vec = { 43, 5, 123, 94, 359, -23, 2, -1 };
+	
+	print_vector(vec);
+	bubble_sort(vec);
+	print_vector(vec);
+}
