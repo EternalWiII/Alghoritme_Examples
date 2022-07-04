@@ -1,0 +1,78 @@
+#include <iostream>
+/*
+    --------------------------------------------------------------------
+    Given a signed 32-bit integer x, return x with its digits reversed. 
+    If reversing x causes the value to go outside 
+    the signed 32-bit integer range [-2^(31), 2(31) - 1], then return 0
+    --------------------------------------------------------------------
+    int range is [-2147483648; 2147483647]. When we go outside of this range
+    it causes, for example: 
+    2147483647 + 1 = -2147483648
+    2147483647 + 2 = -2147483647
+    And it`s undefined behaviour in out program.
+    
+    So, we can`t directly check if our integer goes out our range. Let`s solve it.
+*/
+int reverse(int x) {
+    int pop, temp;
+    int reverse = 0;
+    while (x != 0) {
+        /*
+            When we use % we get a last number.
+            For example: 
+            121 % 10 = 1
+            121 /10 = 12
+
+            12 % 10 = 2
+            12 / 10 = 1
+
+            1 % 10 = 1
+            1 / 10 = 0
+
+            This way we can get every number in our integer
+        */
+        pop = x % 10;
+        x /= 10;
+
+        /*
+            And the most interesting part is if statements
+            
+            To get our reverse integer we are going to multiply
+            every integer, that we will get by 10 and there we can get some
+            unpredictable results, because out integer may go outside of our range
+            So, we should make some if statements, that will save us
+        */
+
+        /*
+            As I said we are going to multiply every integer by 10 to get
+            reverse integer, so if out integer is bigger than INT_MAX / 10, that
+            means that our will be more than 2147483647 when we will multiply it by 10, so
+            we can`t use this method to get reverse integer, and, according to our
+            conditions we will return 0.
+
+            Also in our if statement is another condition (reverse == INT_MAX / 10 && pop > 7)
+            There are some problems. When we divise our INT_MAX / 10 we get 214 748 364,8, but it`s
+            not integer, so we will get 214 748 364.
+            So when we multiply our integer by 10 we will get 2 147 483 640 < 2147483647. 
+            But we also should add poped number (reverse = reverse * 10 + pop), so out poped number
+            can`t be more than 7, otherwise we will go outside of integer range.
+        */
+        if (reverse > INT_MAX / 10 || (reverse == INT_MAX / 10 && pop > 7)) {
+            return 0;
+        }
+
+        /*
+            Our limit: -2147483648. The same as previous statement
+        */
+        if (reverse < INT_MIN / 10 || (reverse == INT_MIN / 10 && pop < -8)) {
+            return 0;
+        }
+
+        reverse = reverse * 10 + pop;
+    }
+    return reverse;
+}
+
+int main() {
+    
+}
