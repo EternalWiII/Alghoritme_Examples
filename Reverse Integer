@@ -9,7 +9,7 @@
     it causes, for example: 
     2147483647 + 1 = -2147483648
     2147483647 + 2 = -2147483647
-    And it`s undefined behaviour in out program.
+    And it`s undefined behaviour in our program.
     
     So, we can`t directly check if our integer goes out our range. Let`s solve it.
 */
@@ -46,7 +46,7 @@ int reverse(int x) {
         /*
             As I said we are going to multiply every integer by 10 to get
             reverse integer, so if out integer is bigger than INT_MAX / 10, that
-            means that our will be more than 2147483647 when we will multiply it by 10, so
+            means that our result will be more than 2147483647, when we will multiply it by 10, so
             we can`t use this method to get reverse integer, and, according to our
             conditions we will return 0.
 
