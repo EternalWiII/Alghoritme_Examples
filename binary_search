@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+
+/*
+	O(log n)
+	list?
+*/
+
+int binary_search(std::vector<int> &v, int target) {
+	int left = 0;
+	int right = v.size() - 1;
+	int middle = (left + right) / 2;
+
+	while (left != right) {
+		if (target == v[middle]) {
+			return middle;
+		}
+
+		if (target > v[middle]) {
+			left = middle + 1;
+		}
+		else {
+			right = middle - 1;
+		}
+		middle = (left + right) / 2;
+	}
+	return middle;
+}
+
+int main() {
+	std::vector<int> v{ 1, 10, 15, 20, 25, 30, 35, 40 };
+
+	std::cout << binary_search(v, 1) << std::endl;
+	std::cout << binary_search(v, 10) << std::endl;
+	std::cout << binary_search(v, 15) << std::endl;
+	std::cout << binary_search(v, 20) << std::endl;
+	std::cout << binary_search(v, 25) << std::endl;
+	std::cout << binary_search(v, 30) << std::endl;
+	std::cout << binary_search(v, 35) << std::endl;
+	std::cout << binary_search(v, 40) << std::endl;
+}
