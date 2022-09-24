@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+std::vector<int> slow_prefix_function(std::string s) {
+    int n = (int) s.size();
+    std::vector<int> p(n, 0);
+    for (int i = 1; i < n; i++)
+        for (int len = 1; len <= i; len++)
+            // если префикс длины len равен суффиксу длины len
+            if (s.substr(0, len) == s.substr(i - len + 1, len))
+			{
+				std::cout << s.substr(0, len) << " " << s.substr(i - len + 1, len) << std::endl;
+                p[i] = len;
+			}
+    return p;
+}
+
+void print_vector(const std::vector<int> &v){
+	auto n = v.size();
+	for (size_t i = 0; i < n; i++)
+	{
+		std::cout << v[i] << " ";
+	}
+	
+}
+
+int main () {
+	std::string s{"bbbbb"};
+	std::vector<int> result = slow_prefix_function(s);
+	print_vector(result);
+}
